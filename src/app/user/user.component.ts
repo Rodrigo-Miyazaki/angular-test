@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-user',
@@ -7,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
   user:any;
 
   ngOnInit(): void {
-    this.user = { name: 'Test'}
+    this.user = { name: 'Test'};
+    this.userService.findByRanking().then((res=>{
+      console.log(res);
+    }))
   }
 
 }
